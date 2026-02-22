@@ -44,17 +44,6 @@
 
 <hr>
 
-<h2>Conclusion</h2>
-
-<p>
-The floating analog pin demonstrates strong entropy characteristics suitable
-for embedded TRNG applications. Minor fluctuations occur due to environmental
-influences, but overall entropy performance remains near ideal. Further validation
-with min-entropy and NIST statistical testing is recommended.
-</p>
-
-<hr>
-
 <h2>Graphs</h2>
 
 ## Shannon Entropy vs Run
@@ -68,3 +57,16 @@ with min-entropy and NIST statistical testing is recommended.
 ## Bit Rate vs Entropy
 
 ![Bitrate Graph](bitrate_vs_entropy.png)
+
+
+<hr>
+
+<h2>Conclusion</h2>
+
+<p>
+The floating analog pin demonstrates strong entropy characteristics suitable
+for embedded TRNG applications. Minor fluctuations occur due to environmental
+influences, but overall entropy performance remains near ideal. Further validation
+with min-entropy and NIST statistical testing is recommended.
+</p>
+
