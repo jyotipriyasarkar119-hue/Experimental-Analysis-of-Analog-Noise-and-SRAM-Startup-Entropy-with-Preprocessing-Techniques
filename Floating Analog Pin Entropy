@@ -1,0 +1,89 @@
+/*
+  Floating Analog Pin Entropy Monitor
+  Runs Every 1 Minute
+  Calculates Shannon Entropy
+
+  Board: Arduino Uno (ATmega328P)
+  Leave A0 unconnected
+*/
+
+#include <Arduino.h>
+#include <math.h>
+
+#define SAMPLE_COUNT 1000
+#define INTERVAL 60000UL   // 1 minute in milliseconds
+
+unsigned long lastRunTime = 0;
+
+void setup() {
+  Serial.begin(9600);
+  delay(2000);
+
+  Serial.println("=== FLOATING ANALOG PIN ENTROPY MONITOR ===");
+  Serial.println("Running every 1 minute...");
+  Serial.println("-------------------------------------------");
+}
+
+void loop() {
+
+  unsigned long currentMillis = millis();
+
+  if (currentMillis - lastRunTime >= INTERVAL) {
+
+    lastRunTime = currentMillis;
+
+    unsigned long onesCount = 0;
+    unsigned long zerosCount = 0;
+
+    Serial.println();
+    Serial.println("Collecting 1000 analog noise bits...");
+
+    for (int i = 0; i < SAMPLE_COUNT; i++) {
+
+      int analogValue = analogRead(A0);
+
+      // Mix lower bits slightly to improve randomness
+      uint8_t noiseBit = (analogValue & 1) ^
+                         ((analogValue >> 1) & 1);
+
+      if (noiseBit == 1)
+        onesCount++;
+      else
+        zerosCount++;
+
+      delayMicroseconds(100);   // decorrelate samples
+    }
+
+    float p1 = (float)onesCount / SAMPLE_COUNT;
+    float p0 = (float)zerosCount / SAMPLE_COUNT;
+
+    float entropy = 0;
+
+    if (p1 > 0)
+      entropy -= p1 * (log(p1) / log(2));
+
+    if (p0 > 0)
+      entropy -= p0 * (log(p0) / log(2));
+
+    Serial.println("-------------------------------------------");
+    Serial.print("Total Bits: ");
+    Serial.println(SAMPLE_COUNT);
+
+    Serial.print("Ones: ");
+    Serial.println(onesCount);
+
+    Serial.print("Zeros: ");
+    Serial.println(zerosCount);
+
+    Serial.print("P(1): ");
+    Serial.println(p1, 6);
+
+    Serial.print("P(0): ");
+    Serial.println(p0, 6);
+
+    Serial.print("Shannon Entropy: ");
+    Serial.println(entropy, 6);
+
+    Serial.println("-------------------------------------------");
+  }
+}
