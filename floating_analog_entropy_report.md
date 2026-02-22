@@ -53,3 +53,18 @@ influences, but overall entropy performance remains near ideal. Further validati
 with min-entropy and NIST statistical testing is recommended.
 </p>
 
+<hr>
+
+<h2>Graphs</h2>
+
+## Shannon Entropy vs Run
+
+![Entropy Graph](entropy_vs_run.png)
+
+## Probability P(1) vs Run
+
+![Probability Graph](probability_vs_run.png)
+
+## Bit Rate vs Entropy
+
+![Bitrate Graph](bitrate_vs_entropy.png)
