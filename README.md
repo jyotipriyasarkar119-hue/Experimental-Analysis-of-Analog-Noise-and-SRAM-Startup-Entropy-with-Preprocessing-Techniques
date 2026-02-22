@@ -1,0 +1,2 @@
+# Experimental-Analysis-of-Analog-Noise-and-SRAM-Startup-Entropy-with-Preprocessing-Techniques-
+To experimentally evaluate and compare the entropy characteristics of floating analog noise, SRAM startup randomness, and hybrid SRAM–analog entropy sources on embedded microcontroller platform, and to analyze the impact of preprocessing techniques such as XOR folding and Von Neumann debiasing on randomness quality and entropy–throughput tradeoff.
