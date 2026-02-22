@@ -45,6 +45,24 @@
 
 <hr>
 
+<h2>Graphs</h2>
+
+![Entropy vs Run](/hybrid_entropy_vs_run.png)
+
+
+![Probability vs Run](/hybrid_probability_vs_run.png)
+
+
+![Ones vs Zeros](/hybrid_ones_zeros_bar.png)
+
+
+![Entropy Histogram](/hybrid_entropy_histogram.png)
+
+
+![Bias Deviation](/hybrid_bias_deviation.png)
+
+<hr>
+
 <h2>Observations</h2>
 
 <ul>
