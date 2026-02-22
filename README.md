@@ -57,9 +57,3 @@ By combining experimental data collection, statistical evaluation, and graphical
 <p>
   For each method, we evaluate key metrics such as Shannon entropy, probability bias, and output bit count, and compare them across all techniques. The results are visualized through graphs and supported by statistical observations to show how preprocessing affects randomness quality and output efficiency.
 </p>
-
----
-
-<p align="center">
-  <strong>Explore the data, run the scripts,</strong> and feel free to extend the work for hardware security or cryptographic research.
-</p>
