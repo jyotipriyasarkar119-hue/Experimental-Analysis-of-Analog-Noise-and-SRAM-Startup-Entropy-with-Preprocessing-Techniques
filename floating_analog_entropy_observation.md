@@ -46,6 +46,8 @@
 
 <h2>Graphs</h2>
 
+<h2>Graphs</h2>
+
 ## Shannon Entropy vs Run
 
 ![Entropy Graph](entropy_vs_run.png)
