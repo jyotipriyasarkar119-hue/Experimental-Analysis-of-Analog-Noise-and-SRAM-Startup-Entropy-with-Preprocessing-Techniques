@@ -61,6 +61,14 @@
 ![Bitrate Graph](bitrate_vs_entropy.png)
 
 
+![Bitrate Graph](bitrate_vs_entropy.png)
+
+
+![Bitrate Graph](bitrate_vs_entropy.png)
+
+
+![Bitrate Graph](bitrate_vs_entropy.png)
+
 <hr>
 
 <h2>Conclusion</h2>
