@@ -61,6 +61,8 @@
 
 ![Bias Deviation](/hybrid_bias_deviation.png)
 
+![Bias Deviation](/Bit_Rate_vs_Shanon_Entropy.png)
+
 <hr>
 
 <h2>Observations</h2>
