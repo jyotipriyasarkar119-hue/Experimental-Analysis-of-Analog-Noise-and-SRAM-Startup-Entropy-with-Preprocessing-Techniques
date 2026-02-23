@@ -46,7 +46,17 @@
 
 <h2>Graphs</h2>
 
-<h2>Graphs</h2>
+![Bit Count vs Run](Bias_Daviation_per_run.png)
+
+![Bit Count vs Run](Bit_count_vs_Run_Number.png)
+
+![Bit Count vs Run](bitrate_vs_entropy.png)
+
+![Bit Count vs Run](entropy_vs_run.png)
+
+![Bit Count vs Run](frequency_vs_shanon_Entropy.png)
+
+![Bit Count vs Run](probability_vs_run.png)
 
 <hr>
 
