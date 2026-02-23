@@ -48,27 +48,6 @@
 
 <h2>Graphs</h2>
 
-## Shannon Entropy vs Run
-
-![Entropy Graph](entropy_vs_run.png)
-
-## Probability P(1) vs Run
-
-![Probability Graph](probability_vs_run.png)
-
-## Bit Rate vs Entropy
-
-![Bitrate Graph](bitrate_vs_entropy.png)
-
-
-![Bitrate Graph](bitrate_vs_entropy.png)
-
-
-![Bitrate Graph](bitrate_vs_entropy.png)
-
-
-![Bitrate Graph](bitrate_vs_entropy.png)
-
 <hr>
 
 <h2>Conclusion</h2>
