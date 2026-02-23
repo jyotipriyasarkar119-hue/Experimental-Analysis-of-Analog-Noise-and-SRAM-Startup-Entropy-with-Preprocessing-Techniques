@@ -1,0 +1,107 @@
+/*
+  Hybrid Entropy Generator
+  SRAM Startup + Floating Analog
+  XOR + 8-bit Folding
+  Arduino Uno (ATmega328P)
+*/
+
+#include <Arduino.h>
+#include <math.h>
+
+#define SRAM_START 0x0100
+#define SRAM_BYTES 128      // 128 bytes = 1024 raw bits
+#define ANALOG_PIN A0
+
+void setup() {
+
+  Serial.begin(9600);
+  delay(2000);
+
+  Serial.println("=== HYBRID ENTROPY (SRAM + ANALOG + FOLD8) ===");
+  Serial.println("---------------------------------------------");
+
+  uint8_t *sram_ptr = (uint8_t*)SRAM_START;
+
+  unsigned long totalBits = 0;
+  unsigned long onesCount = 0;
+  unsigned long zerosCount = 0;
+
+  Serial.println("Final Folded Bit Stream:");
+
+  for (int i = 0; i < SRAM_BYTES; i++) {
+
+    uint8_t sramByte = sram_ptr[i];
+    uint8_t foldedByte = 0;
+
+    // Process 8 bits of SRAM byte
+    for (int bit = 7; bit >= 0; bit--) {
+
+      uint8_t sramBit = (sramByte >> bit) & 1;
+
+      // Floating analog noise
+      int analogValue = analogRead(ANALOG_PIN);
+
+      uint8_t analogBit = (analogValue & 1) ^
+                          ((analogValue >> 1) & 1);
+
+      // XOR mixing
+      uint8_t mixedBit = sramBit ^ analogBit;
+
+      // Folding: XOR accumulate
+      foldedByte ^= mixedBit;
+
+      delayMicroseconds(50);
+    }
+
+    // Print 1 folded bit per SRAM byte
+    Serial.print(foldedByte);
+
+    totalBits++;
+
+    if (foldedByte == 1)
+      onesCount++;
+    else
+      zerosCount++;
+  }
+
+  Serial.println();
+  Serial.println("---------------------------------------------");
+
+  float p1 = (float)onesCount / totalBits;
+  float p0 = (float)zerosCount / totalBits;
+
+  float entropy = 0;
+
+  if (p1 > 0)
+    entropy -= p1 * (log(p1) / log(2));
+
+  if (p0 > 0)
+    entropy -= p0 * (log(p0) / log(2));
+
+  Serial.println("STATISTICS (Folded Hybrid):");
+
+  Serial.print("Total Output Bits: ");
+  Serial.println(totalBits);
+
+  Serial.print("Ones: ");
+  Serial.println(onesCount);
+
+  Serial.print("Zeros: ");
+  Serial.println(zerosCount);
+
+  Serial.print("P(1): ");
+  Serial.println(p1, 6);
+
+  Serial.print("P(0): ");
+  Serial.println(p0, 6);
+
+  Serial.print("Shannon Entropy (per bit): ");
+  Serial.println(entropy, 6);
+
+  Serial.println("---------------------------------------------");
+  Serial.println("Power OFF fully to regenerate SRAM.");
+}
+
+void loop() {
+  // Runs once at boot
+}
