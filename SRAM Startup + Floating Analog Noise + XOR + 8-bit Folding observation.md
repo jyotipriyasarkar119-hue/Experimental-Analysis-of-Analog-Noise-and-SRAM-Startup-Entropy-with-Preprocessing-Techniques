@@ -1,4 +1,4 @@
-<h2>Hybrid Entropy Generator - Observation Table</h2>
+<h2>SRAM Startup + Floating Analog Noise + XOR + 8-bit Folding Observation</h2>
 
 <p><strong>Platform:</strong> Arduino Uno (ATmega328P)</p>
 <p><strong>Method:</strong> SRAM Startup + Floating Analog Noise + XOR + 8-bit Folding</p>
