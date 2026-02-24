@@ -2,114 +2,132 @@
   Hybrid TRNG
   SRAM Startup + Floating Analog Noise
   XOR Mixing + Von Neumann Debiasing
-  Platform: Arduino Uno (ATmega328P)
+  With Statistics
 */
 
-#define OUTPUT_BITS 256       // Final debiased output size
-#define SRAM_BYTES 512        // SRAM sample size
+#define OUTPUT_BITS 512
+#define SRAM_BYTES 512
 
 uint8_t sram_buffer[SRAM_BYTES];
 
 
-// ============================
-// Read SRAM Startup Bits
-// ============================
-void collect_sram() {
+// =========================
+// Capture SRAM Startup
+// =========================
+void capture_sram() {
+  volatile uint8_t *ptr = (volatile uint8_t *)0x0100;
   for (int i = 0; i < SRAM_BYTES; i++) {
-    sram_buffer[i] = *((uint8_t*) (i + 0x100));  
+    sram_buffer[i] = ptr[i];
   }
 }
 
 
-// ============================
-// Get Floating Analog LSB
-// ============================
-uint8_t analog_noise_bit() {
-  uint16_t val = analogRead(A0);
-  return val & 1;  // LSB extraction
-}
-
-
-// ============================
+// =========================
 // Get SRAM Bit
-// ============================
-uint8_t sram_bit(int index) {
+// =========================
+uint8_t get_sram_bit(int index) {
   uint8_t byte = sram_buffer[index / 8];
   return (byte >> (index % 8)) & 1;
 }
 
 
-// ============================
-// XOR Mixed Bit
-// ============================
-uint8_t mixed_bit(int index) {
-  uint8_t b1 = sram_bit(index);
-  uint8_t b2 = analog_noise_bit();
-  return b1 ^ b2;
+// =========================
+// Get Floating Analog Bit
+// =========================
+uint8_t get_analog_bit() {
+  return analogRead(A0) & 1;
 }
 
 
-// ============================
-// Von Neumann Debiasing
-// ============================
-int von_neumann_bit(int index) {
-  uint8_t b1 = mixed_bit(index);
-  uint8_t b2 = mixed_bit(index + 1);
-
-  if (b1 == 0 && b2 == 1) return 0;
-  if (b1 == 1 && b2 == 0) return 1;
-
-  return -1;  // discard
+// =========================
+// Shannon Entropy Function
+// =========================
+float shannon_entropy(float p) {
+  if (p == 0 || p == 1) return 0;
+  return -(p * log(p) / log(2)) - ((1 - p) * log(1 - p) / log(2));
 }
 
 
-// ============================
-// Generate Random Bits
-// ============================
+// =========================
+// Generate Bits + Statistics
+// =========================
 void generate_random() {
 
   int produced = 0;
   int index = 0;
+  int total_bits = SRAM_BYTES * 8;
 
-  Serial.println("Random Output:");
+  int ones = 0;
+  int zeros = 0;
 
-  while (produced < OUTPUT_BITS) {
+  Serial.println("------------------------------------");
+  Serial.println("Hybrid TRNG Output:");
+  Serial.println("------------------------------------");
 
-    int result = von_neumann_bit(index);
-    index += 2;
+  while (produced < OUTPUT_BITS && index < total_bits - 1) {
 
-    if (result != -1) {
-      Serial.print(result);
+    uint8_t b1 = get_sram_bit(index) ^ get_analog_bit();
+    uint8_t b2 = get_sram_bit(index + 1) ^ get_analog_bit();
+
+    if (b1 == 0 && b2 == 1) {
+      Serial.print('0');
+      zeros++;
+      produced++;
+    }
+    else if (b1 == 1 && b2 == 0) {
+      Serial.print('1');
+      ones++;
       produced++;
     }
 
-    if (index >= SRAM_BYTES * 8 - 2) {
-      index = 0;  // loop if exhausted
-    }
+    index += 2;
   }
 
   Serial.println();
+  Serial.println("------------------------------------");
+  Serial.println("STATISTICS (Hybrid XOR + Von Neumann):");
+
+  float p1 = (float)ones / OUTPUT_BITS;
+  float p0 = (float)zeros / OUTPUT_BITS;
+  float entropy = shannon_entropy(p1);
+
+  Serial.print("Total Output Bits: ");
+  Serial.println(OUTPUT_BITS);
+
+  Serial.print("Ones: ");
+  Serial.println(ones);
+
+  Serial.print("Zeros: ");
+  Serial.println(zeros);
+
+  Serial.print("P(1): ");
+  Serial.println(p1, 6);
+
+  Serial.print("P(0): ");
+  Serial.println(p0, 6);
+
+  Serial.print("Shannon Entropy (per bit): ");
+  Serial.println(entropy, 6);
+
+  Serial.println("------------------------------------");
 }
 
 
-// ============================
+// =========================
 // Setup
-// ============================
+// =========================
 void setup() {
 
-  Serial.begin(115200);
+  Serial.begin(9600);
   delay(2000);
 
-  Serial.println("Hybrid TRNG: SRAM + Analog + XOR + Von Neumann");
-
-  collect_sram();     // Capture SRAM startup
-  generate_random();  // Generate final output
+  capture_sram();
+  generate_random();
 }
 
 
-// ============================
+// =========================
 // Loop
-// ============================
+// =========================
 void loop() {
-  // Nothing
 }
