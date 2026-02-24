@@ -60,9 +60,9 @@
 
 ![Entropy vs Run](Fold_8_Entropy_vs_Run.png)
 
-![Probability vs Run](Fold_8_Probability_vs_Run.png)
-
 ![Bias Deviation](Fold_8_Bias_deviation_per_Run.png)
+
+![Probability vs Run](Fold_8_Probability_vs_Run.png)
 
 ![Frequency vs Shannon Entropy](Fold_8_frequency_vs_shannon_entropy.png)
 
