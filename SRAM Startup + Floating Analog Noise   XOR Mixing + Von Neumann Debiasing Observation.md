@@ -1,5 +1,5 @@
 <h2>🔬 Experimental Observations</h2>
-<h3>Hybrid TRNG: SRAM Startup + Floating Analog Noise + XOR Mixing + Von Neumann Debiasing</h3>
+<h3>SRAM Startup + Floating Analog Noise + XOR Mixing + Von Neumann Debiasing</h3>
 
 <hr>
 
