@@ -36,6 +36,28 @@
 
 <hr>
 
+<h3>Graphs</h3>
+
+
+![Entropy vs Run](fold_2_Entropy_vs_Run.png)
+
+
+![Probability vs Run](Fold_2_Probability_vs_run.png)
+
+
+![Bias Deviation](fold_2_Bias_daviation_per_run.png)
+
+
+![Frequency vs Run](Fold_2_Frequency_vs_Run.png)
+
+
+![Bit Count per Run](Fold_2_Bit_count_Per_Run.png)
+
+
+![Bit Rate vs Entropy](Fold_2_Bit_Rate_vs_Entropy.png)
+
+<hr>
+
 <h3>Statistical Summary</h3>
 
 <ul>
