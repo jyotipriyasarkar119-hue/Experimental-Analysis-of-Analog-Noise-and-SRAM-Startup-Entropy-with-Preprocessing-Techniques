@@ -86,6 +86,14 @@
 
 <hr>
 
+<h3>Graphs</h3>
+
+
+![Final_Entropy_Improvement_Flow](Final_Entropy_Improvement_Flow.png)
+
+
+<hr>
+
 <h3> Key Observations</h3>
 
 <ul>
