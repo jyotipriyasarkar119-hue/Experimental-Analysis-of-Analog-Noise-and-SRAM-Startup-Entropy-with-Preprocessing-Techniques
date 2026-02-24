@@ -39,16 +39,17 @@
 <h3>Graphs</h3>
 
 
+
 ![Entropy vs Run](fold_2_Entropy_vs_Run.png)
 
 
-![Probability vs Run](Fold_2_Probability_vs_run.png)
+![Probability vs Run](Fold_2_Probablity_vs_run.png)
 
 
 ![Bias Deviation](fold_2_Bias_daviation_per_run.png)
 
 
-![Frequency vs Run](Fold_2_Probablity_vs_run.png)
+![Frequency vs Run](Fold_2_Frequency_vs_Run.png)
 
 
 ![Bit Count per Run](Fold_2_Bit_count_Per_Run.png)
