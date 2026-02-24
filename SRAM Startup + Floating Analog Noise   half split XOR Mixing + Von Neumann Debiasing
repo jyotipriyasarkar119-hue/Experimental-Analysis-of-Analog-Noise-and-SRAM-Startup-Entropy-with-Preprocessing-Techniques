@@ -1,0 +1,121 @@
+/*
+  Hybrid TRNG
+  SRAM Startup + Floating Analog Noise
+  Half-Split XOR + Von Neumann Debiasing
+  Platform: Arduino Uno (ATmega328P)
+*/
+
+#define SRAM_BYTES 512
+#define RAW_BITS (SRAM_BYTES * 8)
+#define OUTPUT_BITS 256
+
+uint8_t sram_buffer[SRAM_BYTES];
+uint8_t raw_bits[RAW_BITS];
+uint8_t folded_bits[RAW_BITS / 2];
+
+
+// ============================
+// Collect SRAM Startup Data
+// ============================
+void collect_sram() {
+  for (int i = 0; i < SRAM_BYTES; i++) {
+    sram_buffer[i] = *((uint8_t*)(0x100 + i));
+  }
+}
+
+
+// ============================
+// Extract SRAM Bit
+// ============================
+uint8_t sram_bit(int index) {
+  uint8_t byte = sram_buffer[index / 8];
+  return (byte >> (index % 8)) & 1;
+}
+
+
+// ============================
+// Floating Analog Bit
+// ============================
+uint8_t analog_bit() {
+  uint16_t val = analogRead(A0);
+  return val & 1;
+}
+
+
+// ============================
+// Step 1: Combine SRAM + Analog
+// ============================
+void generate_raw_bits() {
+  for (int i = 0; i < RAW_BITS; i++) {
+    raw_bits[i] = sram_bit(i) ^ analog_bit();
+  }
+}
+
+
+// ============================
+// Step 2: Half-Split XOR Folding
+// ============================
+void half_split_xor() {
+
+  int half = RAW_BITS / 2;
+
+  for (int i = 0; i < half; i++) {
+    folded_bits[i] = raw_bits[i] ^ raw_bits[i + half];
+  }
+}
+
+
+// ============================
+// Step 3: Von Neumann Debiasing
+// ============================
+void generate_output() {
+
+  int produced = 0;
+  int index = 0;
+  int max_bits = RAW_BITS / 2;
+
+  Serial.println("Random Output:");
+
+  while (produced < OUTPUT_BITS && index < max_bits - 1) {
+
+    uint8_t b1 = folded_bits[index];
+    uint8_t b2 = folded_bits[index + 1];
+
+    if (b1 == 0 && b2 == 1) {
+      Serial.print(0);
+      produced++;
+    }
+    else if (b1 == 1 && b2 == 0) {
+      Serial.print(1);
+      produced++;
+    }
+
+    index += 2;
+  }
+
+  Serial.println();
+}
+
+
+// ============================
+// Setup
+// ============================
+void setup() {
+
+  Serial.begin(115200);
+  delay(2000);
+
+  Serial.println("Hybrid TRNG: SRAM + Analog + Half-Split XOR + Von Neumann");
+
+  collect_sram();
+  generate_raw_bits();
+  half_split_xor();
+  generate_output();
+}
+
+
+// ============================
+// Loop
+// ============================
+void loop() {
+}
