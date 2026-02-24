@@ -30,6 +30,31 @@
 
 <hr>
 
+<h3>Graphs</h3>
+
+![Entropy vs Run](VN_XOR8_ENTROPY_VS_RUN.png)
+
+
+![P1 vs Run](VN_XOR8_P1_vs_Run.png)
+
+
+![P0 vs Run](VN_XOR8_P0_vs_run.png)
+
+
+![Bias Deviation](VN_XOR8_Bias_Daviation_vs_Run.png)
+
+
+![Frequency vs Entropy](VN_XOR8_Frequency_vs_Entropy.png)
+
+
+![Bit Count](VN_XOR8_Bit_count_vs_Run.png)
+
+
+![Bit Rate vs Entropy](VN_XOR8_Bit_Rate_vs_Entropy.png)
+
+
+<hr>
+
 <h3> Statistical Summary</h3>
 
 <ul>
