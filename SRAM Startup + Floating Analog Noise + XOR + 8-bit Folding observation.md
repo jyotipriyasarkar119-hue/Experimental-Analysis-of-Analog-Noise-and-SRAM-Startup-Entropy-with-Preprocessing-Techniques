@@ -54,7 +54,11 @@
   </tbody>
 </table>
 
-<br>
+<hr>
+
+<h3>Graphs</h3>
+
+
 
 <h3>Conclusion</h3>
 <p>
