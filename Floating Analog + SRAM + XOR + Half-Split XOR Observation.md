@@ -67,7 +67,7 @@
 ![P1 vs Run](Split_XOR_Probablity1_vs_Run_No.png)
 
 
-![P0 vs Run](Split_XOR_Probability0_vs_Run_no.png)
+![P0 vs Run](Split_XOR_Probablity0_vs_Run_no.png)
 
 
 ![Bias Deviation](Split_XOR_Bias_Deviation_per_Run.png)
