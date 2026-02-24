@@ -58,6 +58,22 @@
 
 <h3>Graphs</h3>
 
+![Entropy vs Run](fold_8_Entropy_vs_Run.png)
+
+
+![Probability vs Run](Fold_8_Probablity_vs_run.png)
+
+
+![Bias Deviation](fold_8_Bias_daviation_per_run.png)
+
+
+![Frequency vs Run](Fold_8_Frequency_vs_Run.png)
+
+
+![Bit Count per Run](Fold_8_Bit_count_Per_Run.png)
+
+
+![Bit Rate vs Entropy](Fold_8_Bit_Rate_vs_Entropy.png)
 
 
 <h3>Conclusion</h3>
