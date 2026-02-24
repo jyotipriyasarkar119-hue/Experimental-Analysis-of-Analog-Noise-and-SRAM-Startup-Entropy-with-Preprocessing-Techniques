@@ -48,7 +48,7 @@
 ![Bias Deviation](fold_2_Bias_daviation_per_run.png)
 
 
-![Frequency vs Run](Fold_2_Frequency_vs_Run.png)
+![Frequency vs Run](Fold_2_Probablity_vs_run.png)
 
 
 ![Bit Count per Run](Fold_2_Bit_count_Per_Run.png)
