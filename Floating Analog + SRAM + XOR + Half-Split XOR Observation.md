@@ -58,6 +58,31 @@
 
 <hr>
 
+<h3>Graphs</h3>
+
+
+![Entropy vs Run](Split_XOR_Entropy_vs_Run_Number.png)
+
+
+![P1 vs Run](Split_XOR_Probability1_vs_Run_No.png)
+
+
+![P0 vs Run](Split_XOR_Probability0_vs_Run_no.png)
+
+
+![Bias Deviation](Split_XOR_Bias_Deviation_per_Run.png)
+
+
+![Bit Count](Split_XOR_Bit_Count_vs_Run.png)
+
+
+![Frequency vs Entropy](Split_XOR_Shannon_Entropy_vs_Frequency.png)
+
+
+![Bit Rate vs Entropy](Split_XOR_Bit_rate_vs_Entropy.png)
+
+<hr>
+
 <h3> Conclusion</h3>
 
 <p>
