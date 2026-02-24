@@ -64,7 +64,7 @@
 ![Entropy vs Run](Split_XOR_Entropy_vs_Run_Number.png)
 
 
-![P1 vs Run](Split_XOR_Probability1_vs_Run_No.png)
+![P1 vs Run](Split_XOR_Probablity1_vs_Run_No.png)
 
 
 ![P0 vs Run](Split_XOR_Probability0_vs_Run_no.png)
